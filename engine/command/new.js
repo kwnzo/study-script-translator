@@ -1,5 +1,6 @@
-export default function new_variable(line, storage) {
+export default function new_variable(line, storage, is_start) {
   if (line[0] != "new") return [false, "100"];
+  if (!is_start.status) return [false, "103"];
 
   let var_name = line[1];
   let var_type = line[2];
