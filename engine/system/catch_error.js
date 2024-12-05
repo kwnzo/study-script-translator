@@ -22,11 +22,15 @@ let errors = {
 
   // set
   200: "not a 'set' operator",
-  201: "variable does not exist",
+  201: "cannot set a value for a variable that does not exist",
   202: "wrong variable value for String type",
   203: "wrong variable value for Number type",
   204: "cannot set value for this variable. undefined type",
   205: "number is out of range",
+
+  // delete
+  300: "not a 'delete' operator",
+  301: "cannot delete a variable that does not exist",
 };
 
 export default function catch_error(status, index, line) {
