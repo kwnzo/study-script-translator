@@ -8,6 +8,8 @@ export default function detect_command(line, engine, storage) {
       return engine.new(line, storage);
     case "set":
       return engine.set(line, storage);
+    case "delete":
+      return engine.delete(line, storage);
     default:
       return false;
   }
