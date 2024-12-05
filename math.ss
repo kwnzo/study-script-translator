@@ -5,3 +5,6 @@ set a 20
 set b 7
 
 log number a - b + 3
+
+delete a
+delete b
