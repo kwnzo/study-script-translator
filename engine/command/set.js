@@ -1,5 +1,6 @@
-export default function set_variable(line, storage) {
+export default function set_variable(line, storage, is_start) {
   if (line[0] != "set") return [false, "200"];
+  if (!is_start.status) return [false, "206"];
 
   let var_name = line[1];
   let var_value = line.slice(2).join(" ");
