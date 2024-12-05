@@ -8,12 +8,16 @@ import log from "./engine/command/log.js";
 import new_variable from "./engine/command/new.js";
 import set_variable from "./engine/command/set.js";
 import delete_variable from "./engine/command/delete.js";
+import start from "./engine/command/start.js";
 
 export default class Study_Script {
   #storage;
 
   constructor() {
     this.#storage = {};
+    this.is_start = {
+      status: false,
+    };
 
     // system
     this.detect_command = detect_command;
@@ -25,6 +29,7 @@ export default class Study_Script {
     this.new = new_variable;
     this.set = set_variable;
     this.delete = delete_variable;
+    this.start = start;
   }
 
   run(code) {
@@ -33,7 +38,12 @@ export default class Study_Script {
     code = code.split("\n");
     for (let i = 0; i < code.length; i++) {
       let line = code[i].split(" ");
-      let status = this.detect_command(line, this, this.#storage);
+      let status = this.detect_command(
+        line,
+        this,
+        this.#storage,
+        this.is_start
+      );
       if (this.catch_error(status, i + 1, line)) {
         return false;
       }
