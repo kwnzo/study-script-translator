@@ -1,4 +1,4 @@
-export default function log(line, storage) {
+export default function log(line, storage, is_start) {
   if (line[0] != "log") return [false, "000"];
 
   line = line.slice(1);
@@ -21,6 +21,7 @@ export default function log(line, storage) {
             text[i].lastIndexOf('"')
           );
         } else {
+          if (!is_start.status) return [false, "005"];
           if (!storage.hasOwnProperty(non_spaced)) return [false, "002"];
           text[i] = storage[non_spaced].value;
         }
@@ -39,6 +40,7 @@ export default function log(line, storage) {
       text = text.split("+").join("?").split("-").join("?").split("?");
       for (let i = 0; i < text.length; i++) {
         if (Number.isNaN(parseFloat(text[i]))) {
+          if (!is_start.status) return [false, "005"];
           if (!storage.hasOwnProperty(text[i])) return [false, "002"];
           if (storage[text[i]].type != "number") return [false, "003"];
           text[i] = storage[text[i]].value;
