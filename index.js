@@ -7,6 +7,7 @@ import garbage_collector from "./engine/system/garbage_collector.js";
 import log from "./engine/command/log.js";
 import new_variable from "./engine/command/new.js";
 import set_variable from "./engine/command/set.js";
+import delete_variable from "./engine/command/delete.js";
 
 export default class Study_Script {
   #storage;
@@ -23,6 +24,7 @@ export default class Study_Script {
     this.log = log;
     this.new = new_variable;
     this.set = set_variable;
+    this.delete = delete_variable;
   }
 
   run(code) {
@@ -46,7 +48,6 @@ export default class Study_Script {
       "\x1b[32m",
       `\tforgotten garbage size: ${this.garbage_collector(this.#storage)} bites`
     );
-    console.log(this.#storage);
 
     return true;
   }
