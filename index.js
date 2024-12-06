@@ -9,6 +9,8 @@ import new_variable from "./engine/command/new.js";
 import set_variable from "./engine/command/set.js";
 import delete_variable from "./engine/command/delete.js";
 import start from "./engine/command/start.js";
+import if_sentence from "./engine/command/if.js";
+import close from "./engine/command/close.js";
 
 export default class Study_Script {
   #storage;
@@ -16,6 +18,9 @@ export default class Study_Script {
   constructor() {
     this.#storage = {};
     this.is_start = {
+      status: false,
+    };
+    this.ignore = {
       status: false,
     };
 
@@ -30,6 +35,8 @@ export default class Study_Script {
     this.set = set_variable;
     this.delete = delete_variable;
     this.start = start;
+    this.if = if_sentence;
+    this.close = close;
   }
 
   run(code) {
@@ -42,7 +49,8 @@ export default class Study_Script {
         line,
         this,
         this.#storage,
-        this.is_start
+        this.is_start,
+        this.ignore
       );
       if (this.catch_error(status, i + 1, line)) {
         return false;
