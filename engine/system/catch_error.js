@@ -42,6 +42,18 @@ let errors = {
   400: "not a 'start' operator",
   401: "'start' command found more arguments than expected (0)",
   402: "storage already assembled",
+
+  // if
+  500: "not a 'if' operator",
+  501: "undefined condition operator",
+  502: "cannot use variables in sentences, memory storage does not exist",
+  503: "cannot operate sentence, variable does not exist",
+  504: "cannot operate with this variable, arguments must be in Number type",
+
+  // close
+  600: "not a 'close' operator",
+  601: "'close' command found more arguments than expected (0)",
+  
 };
 
 export default function catch_error(status, index, line) {
