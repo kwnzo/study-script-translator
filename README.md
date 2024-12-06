@@ -1,6 +1,6 @@
 # Study Script
 
-> you can also check [русская документация](https://github.com/SenatorMorra/study-script/blob/main/README-RU.md).
+> you can also check [эта страница, но на русском](https://github.com/SenatorMorra/study-script/blob/main/README-RU.md).
 
 **`Study Script`** - it is a programming language designed to teach programming. The main aspect of the study is focused on the fundamental processes occurring in a computer and with memory, when executing commands in high-level programming languages.
 
