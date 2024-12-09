@@ -8,25 +8,55 @@ export default function set_variable(line, storage, is_start) {
 
   switch (storage[var_name].type) {
     case "string":
-      let non_spaced = var_value[0].replaceAll(" ", "");
-      if (
-        non_spaced[0] != '"' ||
-        non_spaced.at(-1) != '"' ||
-        non_spaced.length - 2 >= non_spaced.replaceAll('"', "").length
-      )
-        return [false, "202"];
-      storage[var_name].value = var_value.slice(1, var_value.length - 1);
+      let params = var_value.split("+");
+      for (let i = 0; i < params.length; i++) {
+        if (params[i].indexOf('"') != -1) {
+          params[i] = params[i].slice(
+            params[i].indexOf('"') + 1,
+            params.LastIndexOf('"')
+          );
+        } else {
+          params[i] = params[i].replaceAll(" ", "");
+          if (!storage.hasOwnProperty(params[i])) return [false, "201"];
+          if (storage[params[i]].type != "string") return [false, "202"];
+          params[i] = storage[params[i]].value;
+        }
+      }
+
+      storage[var_name].value = params.join("");
       break;
     case "number":
-      if (Number.isNaN(parseFloat(var_value))) return [false, "203"];
-      let current_number =
-        var_value.indexOf(".") != -1
-          ? parseFloat(var_value)
-          : parseInt(var_value);
-      if (Math.abs(current_number) > 16777216) return [false, "205"];
-      storage[var_name].value = current_number;
+      let operators = [];
 
+      for (let i = 0; i < var_value.length; i++) {
+        if (["+", "-"].indexOf(var_value[i]) != -1)
+          operators.push(var_value[i]);
+      }
+
+      let args = var_value.split("+").join("?").split("-").join("?").split("?");
+
+      for (let i = 0; i < args.length; i++) {
+        if (Number.isNaN(parseInt(args[i]))) {
+          args[i] = args[i].replaceAll(" ", "");
+          if (!storage.hasOwnProperty(args[i])) return [false, "201"];
+          if (storage[args[i]].type != "number") return [false, "203"];
+          args[i] = parseInt(storage[args[i]].value);
+        } else {
+          args[i] = parseInt(args[i]);
+        }
+      }
+
+      let result = args[0];
+      args = args.slice(1);
+      for (let i = 0; i < args.length; i++) {
+        if (operators[i] == "+") result += args[i];
+        else if (operators[i] == "-") result -= args[i];
+      }
+
+      if (Math.abs(result) > 16777216) return [false, "205"];
+      storage[var_name].value = parseInt(result);
       break;
+      ы;
     default:
       return [false, "204"];
   }
