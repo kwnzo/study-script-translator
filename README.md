@@ -24,6 +24,10 @@ It is suitable for both elementary school children to learn the basics of progra
 - written in `Node.js `
 - files with code written in `Study Script` have the file extension `.ss`
 
+## Summary
+
+- ### [⭐ Documentation](https://github.com/SenatorMorra/study-script/blob/main/documentation/en-doc.md)
+
 # Project roadmap
 
 The planned commercial development of the project and the functional development of the language.
