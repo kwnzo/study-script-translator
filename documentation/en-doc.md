@@ -13,6 +13,7 @@
 - **operators**:
     - [Math operators](#math-operators)
     - [Logical operators](#logical-operators)
+    - [Data types](#data-types)
     
 ## commands
 
@@ -34,7 +35,7 @@ start
 
 ---
 
-### new
+## new
 
 **technical description**:
 
@@ -101,3 +102,74 @@ greetings = "My name is " + name
 set greetings "My name is" + name
 ```
 (greetings = "My name is Tempest")
+
+## log
+
+**technical description**:
+
+_writes information into console (screen)_
+
+**analog description**:
+
+_that's literally it is. just shows somthing on your screen (I mean console)._
+
+syntax:
+```
+log <data_type> <data_expression>
+```
+
+`<data_type>` - data type of `<data_expression>`
+
+`<data_expression>` - any combination of the raw and stored data in the indificated data type. use `>>` for join variables (any type) into strings.
+
+example:
+
+text<br>
+name = "John"<br> 
+age = 17 (number)
+```
+log string "My name is " >> name >> ", I'm " >> age >> " years old."
+```
+
+number<br>
+x = 5
+```
+log number 2 + x - 7
+```
+
+## if
+
+**technical description**:
+
+_condition case for execute next code only if condition are true_
+
+**analog description**:
+
+> (transistor explanation is better I guess)
+
+_our program can return different information depends on data we have. so for make program variable we have this command. we can ask is (something) true or false_
+
+syntax:
+```
+if (<condition>)
+    <code>
+close
+```
+
+`<condition>` is expression of comprasion 2 sides. we can say if 1st (left) side bigger/higher/more then 2nd (right) side. if it's correct then `<code>` of any code written on `Study Script` will be executed. for compare 2 sides we have `>` operator.
+
+example:
+
+we have to determine is someone adult or not and can he/she buy alchohol. remember in different countries adult age is different, so we'll take `18` as it.
+
+age = 17<br>
+adult = 18
+```
+if (age > adult)
+    log string "he/she is adult and can buy alchohol"
+close
+
+if (adult > age)
+    log string "he/she is NOT adult and can NOT buy alchohol"
+close
+```
