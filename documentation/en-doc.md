@@ -13,9 +13,12 @@
 - **operators**:
     - [Math operators](#math-operators)
     - [Logical operators](#logical-operators)
-    - [Data types](#data-types)
+    - [Combined operators](#combined-operators)
+- **data types**:
+    - [number](#number)
+    - [text](#string)
     
-## commands
+# commands
 
 ### start
 
@@ -173,3 +176,105 @@ if (adult > age)
     log string "he/she is NOT adult and can NOT buy alchohol"
 close
 ```
+
+## close
+
+**technical description**:
+
+_operator for finish code block after condition `if`_
+
+**analog description**:
+
+_program doesn't know when finish `<code>` block for `if` operator, so this commands says to program that right here we finish `if` brackets and continues our program_
+
+syntax:
+```
+close
+```
+
+example:<br>
+go to `if` example
+
+## delete
+
+**technical description**:
+
+_this command deletes a variable_
+
+**analog description**:
+
+_as you remember we took "bank cell" for our variable and now we refuse from using this memory cell. I mean we taking out our money and jewelry and leaving bank, now our "bank cell" is not our and anybody can do anything with it._
+
+syntax:
+```
+delete <variable_name>
+```
+
+`<variable_name>` - name of existed variable that you created with `new` before
+
+example:
+
+a = 10
+```
+delete a
+```
+
+# operators
+
+## Math operators
+
+`-` - minus operator for decrease second number from first number
+
+```
+5 - 2 = 3
+```
+
+`+` - plus operator for increase first number on second number
+
+```
+5 + 2 = 7
+```
+
+## Logical operators
+
+`>` - more operator check if first number more then 
+
+false
+```
+7 > 10
+```
+
+true
+```
+7 > 5
+```
+
+## Text operators
+
+`+` - concat 2 text strings into 1
+
+## Combined operators 
+
+`>>` - special operator for log, concat any 2 data expression / variables / raw data type 
+
+```
+"I'm " >> 20 >> " years old"
+```
+
+legit example:
+```
+new number age
+set age 20
+
+log string "I'm " >> age >> " years old"
+```
+
+# Data types
+
+## number
+
+integer number without fractional part. limit - `16777216`
+
+## string
+
+text information inside of `"` symbols like `"text"` without limit of maximum length
