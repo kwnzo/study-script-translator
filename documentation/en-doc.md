@@ -17,6 +17,7 @@
 - **data types**:
     - [number](#number)
     - [text](#string)
+- **errors**:
     
 # commands
 
