@@ -11,6 +11,7 @@ import delete_variable from "./engine/command/delete.js";
 import start from "./engine/command/start.js";
 import if_sentence from "./engine/command/if.js";
 import close from "./engine/command/close.js";
+import else_sentence from "./engine/command/else.js";
 
 export default class Study_Script {
   #storage;
@@ -37,6 +38,7 @@ export default class Study_Script {
     this.start = start;
     this.if = if_sentence;
     this.close = close;
+    this.else = else_sentence;
   }
 
   run(code) {
