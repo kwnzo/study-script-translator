@@ -56,7 +56,6 @@ export default function set_variable(line, storage, is_start) {
       if (Math.abs(result) > 16777216) return [false, "205"];
       storage[var_name].value = parseInt(result);
       break;
-      ы;
     default:
       return [false, "204"];
   }
