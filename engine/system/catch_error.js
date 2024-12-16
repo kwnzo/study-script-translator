@@ -53,7 +53,10 @@ let errors = {
   // close
   600: "not a 'close' operator",
   601: "'close' command found more arguments than expected (0)",
-  
+
+  // else
+  700: "not a 'else' operator",
+  701: "'else' command found more arguments than expected (0)",
 };
 
 export default function catch_error(status, index, line) {
