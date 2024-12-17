@@ -34,6 +34,8 @@ export default function detect_command(
       return engine.close(line, ignore);
     case "else":
       return engine.else(line, ignore);
+    case "finish":
+      return engine.finish(line);
     default:
       return [false, "0"];
   }
