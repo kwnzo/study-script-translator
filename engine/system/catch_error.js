@@ -57,6 +57,10 @@ let errors = {
   // else
   700: "not a 'else' operator",
   701: "'else' command found more arguments than expected (0)",
+
+  // finish
+  800: "not a 'finish' operator",
+  801: "'finish' command found more arguments than expected (0)",
 };
 
 export default function catch_error(status, index, line) {
