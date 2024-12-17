@@ -35,19 +35,19 @@ The planned commercial development of the project and the functional development
 ## 2025 (Q1-2):
 
 - [ ] adding cycles
-- [ ] adding comments
+- [x] adding comments
 - [ ] adding character conversion to character code
 - [ ] adding time (in timestamp format)
-- [ ] adding a change in the value of a variable
+- [x] adding a change in the value of a variable
 - [ ] development of full-fledged documentation
 - [ ] creating examples of simulating fundamental functions and operators
 - [ ] creating a library of basic programming tasks
 - [ ] adding syntax highlighting extension to `VSCode`, `SublimeText`
-- [ ]  publishing the compiler for public use
+- [ ] publishing the compiler for public use
 - [ ] creating an educational platform using `Study Script`
 
 ## 2025 (Q3-4):
 
-- [ ] creating a `Study Script` code translator <-> `JavaScript`
+- [ ] creating a code translator `Study Script` <-> `JavaScript`
 - [ ] adding documentation in English (+), Chinese (-), Spanish (-), Arabic (-), Portuguese (-), Russian (+), German (-), French (-), Japanese (-), Korean (-)
 - [ ] creating a visual an animator of step-by-step code execution (in the format of a video / set of images or an interactive website)
