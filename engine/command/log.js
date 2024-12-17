@@ -39,13 +39,12 @@ export default function log(line, storage, is_start) {
 
       text = text.split("+").join("?").split("-").join("?").split("?");
       for (let i = 0; i < text.length; i++) {
-        if (Number.isNaN(parseFloat(text[i]))) {
+        if (Number.isNaN(parseInt(text[i]))) {
           if (!is_start.status) return [false, "005"];
           if (!storage.hasOwnProperty(text[i])) return [false, "002"];
           if (storage[text[i]].type != "number") return [false, "003"];
           text[i] = storage[text[i]].value;
-        } else if (text[i].indexOf(".") != -1) text[i] = parseFloat(text[i]);
-        else text[i] = parseInt(text[i]);
+        } else text[i] = parseInt(text[i]);
       }
 
       let result = text[0];
