@@ -25,6 +25,7 @@ export default class Study_Script {
     };
     this.ignore = {
       status: false,
+      deep_ignore: [],
     };
 
     // system
