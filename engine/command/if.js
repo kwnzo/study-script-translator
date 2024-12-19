@@ -1,6 +1,11 @@
 export default function if_sentence(line, storage, is_start, ignore) {
   if (line[0] != "if") return [false, "500"];
 
+  if (ignore.status == true) {
+    ignore.deep_ignore.push("all");
+    return true;
+  }
+
   let condition = line.join(" ");
   condition = condition.slice(
     condition.indexOf("(") + 1,
@@ -26,6 +31,8 @@ export default function if_sentence(line, storage, is_start, ignore) {
 
   if (operator == ">" && condition[0] > condition[1]) ignore.status = false;
   else ignore.status = true;
+
+  ignore.deep_ignore.push(ignore.status == true ? "if" : "else");
 
   return true;
 }
