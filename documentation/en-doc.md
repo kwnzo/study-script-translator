@@ -8,8 +8,10 @@
     - [set](#set)
     - [log](#log)
     - [if](#if)
+    - [else](#else)
     - [close](#close)
     - [delete](#delete)
+    - [finish](#finish)
 - **operators**:
     - [Math operators](#math-operators)
     - [Logical operators](#logical-operators)
