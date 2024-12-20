@@ -32,9 +32,9 @@ It is suitable for both elementary school children to learn the basics of progra
 
 The planned commercial development of the project and the functional development of the language.
 
-## 2025 (Q1-2):
+## 2025 (H1):
 
-- [ ] adding cycles
+- [x] adding cycles
 - [x] adding comments
 - [ ] adding character conversion to character code
 - [ ] adding time (in timestamp format)
@@ -46,7 +46,7 @@ The planned commercial development of the project and the functional development
 - [ ] publishing the compiler for public use
 - [ ] creating an educational platform using `Study Script`
 
-## 2025 (Q3-4):
+## 2025 (H2):
 
 - [ ] creating a code translator `Study Script` <-> `JavaScript`
 - [ ] adding documentation in English (+), Chinese (-), Spanish (-), Arabic (-), Portuguese (-), Russian (+), German (-), French (-), Japanese (-), Korean (-)
