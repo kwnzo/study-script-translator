@@ -13,7 +13,7 @@ export default function set_variable(line, storage, is_start) {
         if (params[i].indexOf('"') != -1) {
           params[i] = params[i].slice(
             params[i].indexOf('"') + 1,
-            params.LastIndexOf('"')
+            params[i].lastIndexOf('"')
           );
         } else {
           params[i] = params[i].replaceAll(" ", "");
