@@ -14,18 +14,23 @@ import if_sentence from "./engine/command/if.js";
 import close from "./engine/command/close.js";
 import else_sentence from "./engine/command/else.js";
 import finish from "./engine/command/finish.js";
+import loop from "./engine/command/loop.js";
+import end from "./engine/command/end.js";
 
 export default class Study_Script {
   #storage;
+  #loops;
 
   constructor() {
     this.#storage = {};
+    this.#loops = {};
     this.is_start = {
       status: false,
     };
     this.ignore = {
       status: false,
       deep_ignore: [],
+      ignore_until: false,
     };
 
     // system
@@ -44,6 +49,8 @@ export default class Study_Script {
     this.close = close;
     this.else = else_sentence;
     this.finish = finish;
+    this.loop = loop;
+    this.end = end;
   }
 
   run(code) {
@@ -52,16 +59,27 @@ export default class Study_Script {
     code = code.split("\n");
     for (let i = 0; i < code.length; i++) {
       let line = this.no_comments(code[i]);
+
+      if (
+        this.ignore.ignore_until != false &&
+        this.ignore.ignore_until.indexOf(line) == -1
+      ) {
+        continue;
+      }
+
       line = line.split(" ");
 
       let status = this.detect_command(
+        i,
         line,
         this,
         this.#storage,
+        this.#loops,
         this.is_start,
         this.ignore
       );
       if (status === "finish") break;
+      if (typeof status == "number") i = status;
       if (this.catch_error(status, i + 1, line)) {
         return false;
       }
