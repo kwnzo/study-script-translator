@@ -1,7 +1,9 @@
 export default function detect_command(
+  line_index,
   line,
   engine,
   storage,
+  loops,
   is_start,
   ignore
 ) {
@@ -11,7 +13,8 @@ export default function detect_command(
     }
   }
 
-  if (ignore.status && ["close", "else"].indexOf(line[0]) == -1) return true;
+  if (ignore.status && ["close", "else", "if"].indexOf(line[0]) == -1)
+    return true;
 
   switch (line[0]) {
     case "":
@@ -36,6 +39,10 @@ export default function detect_command(
       return engine.else(line, ignore);
     case "finish":
       return engine.finish(line);
+    case "loop":
+      return engine.loop(line_index, line, loops, storage, ignore, is_start);
+    case "end":
+      return engine.end(line, loops, storage, ignore, is_start);
     default:
       return [false, "0"];
   }
