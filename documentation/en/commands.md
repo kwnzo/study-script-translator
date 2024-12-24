@@ -1,21 +1,21 @@
 # navigation of `Study Script` commands
-## process commands:
+- **process commands**:
     - [start](#start)
     - [finish](#finish)
-## variable commands:
+- **variable commands**:
     - [new](#new)
     - [set](#set)
     - [delete](#delete)
-## condition commands:
+- **condition commands**:
     - [if](#if)
     - [else](#else)
     - [close](#close)
-## loop commands:
+- **loop commands**:
     - [loop](#loop)
     - [end](#end)
-## input/output commands:
+- **input/output commands**:
     - [log](#log)
-## comments command:
+- **comments command**:
     - [comments](#comments)
 
 ---
