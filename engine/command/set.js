@@ -15,6 +15,13 @@ export default function set_variable(line, storage, is_start) {
             params[i].indexOf('"') + 1,
             params[i].lastIndexOf('"')
           );
+        } else if (params[i].indexOf('binary(') != -1) {
+          params[i] = params[i].slice(
+            params[i].indexOf('(') + 1,
+            params[i].lastIndexOf(')')
+          );
+          if (storage.hasOwnProperty(params[i])) params[i] = new String(storage[params[i]].value);
+          else params[i] = new String(params[i]);
         } else {
           params[i] = params[i].replaceAll(" ", "");
           if (!storage.hasOwnProperty(params[i])) return [false, "201"];
