@@ -26,7 +26,7 @@ It is suitable for both elementary school children to learn the basics of progra
 
 ## Summary
 
-- ### [⭐ Documentation](https://github.com/SenatorMorra/study-script/blob/main/documentation/en-doc.md)
+- ### [⭐ Documentation](https://github.com/SenatorMorra/study-script/blob/main/documentation/en/navigation.md)
 
 # Project roadmap
 
