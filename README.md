@@ -36,8 +36,8 @@ The planned commercial development of the project and the functional development
 
 - [x] adding cycles
 - [x] adding comments
-- [ ] adding character conversion to character code
-- [ ] adding time (in timestamp format)
+- [x] adding character conversion to character code
+- [x] adding time (in timestamp format)
 - [x] adding a change in the value of a variable
 - [ ] development of full-fledged documentation
 - [ ] creating examples of simulating fundamental functions and operators

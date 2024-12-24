@@ -22,7 +22,14 @@ export default class Study_Script {
   #loops;
 
   constructor() {
-    this.#storage = {};
+    this.#storage = {
+      TIME: {
+        get value() {
+          return new Date().valueOf();
+        },
+        type: 'number',
+      }
+    };
     this.#loops = {};
     this.is_start = {
       status: false,
