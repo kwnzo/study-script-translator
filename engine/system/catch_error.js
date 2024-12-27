@@ -9,14 +9,18 @@ function e(x) {
 let errors = {
   undefined: "undefined error",
   0: "undefined command",
+  's0': 'syntax error. undefined command or misspell in command name',
 
   // log
   "000": "not a 'log' operator",
   "001": "wrong log data type operator",
+  "s001": "syntax error. unavaiable type operator",
   "002": "variable does not exist",
   "003": "variable type is not a number",
   "004": "undefined math operation with numbers",
   "005": "cannot use variable in sentences, memory storage does not exist",
+  "s006_0": 'syntax error. data expression issue. text between "here" or variable name with only a-Z, _, 0-9 starts from a-Z or _',
+  "s006_1": 'syntax error. data expression issue. number is set of figures starts from anything except 0 or variable name with only a-Z, _, 0-9 starts from a-Z or _',
 
   // new
   100: "not a 'new' operator",

@@ -1,7 +1,10 @@
 export default function garbage_collector(storage) {
   let garbage = 0;
+  let constants = ['TIME'];
 
   for (let key in storage) {
+    if (constants.indexOf(key) != -1) continue;
+
     if (storage[key].type == "string")
       garbage +=
         storage[key].value.length *

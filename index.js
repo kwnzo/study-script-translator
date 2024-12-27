@@ -1,8 +1,10 @@
 // system
 import detect_command from "./engine/system/detect_command.js";
+import strict_policy from './engine/system/strict_policy.js';
 import catch_error from "./engine/system/catch_error.js";
 import garbage_collector from "./engine/system/garbage_collector.js";
 import no_comments from "./engine/system/no_comments.js";
+import computer from './engine/system/computer.js';
 
 // commands
 import log from "./engine/command/log.js";
@@ -22,29 +24,19 @@ export default class Study_Script {
   #loops;
 
   constructor() {
-    this.#storage = {
-      TIME: {
-        get value() {
-          return new Date().valueOf();
-        },
-        type: 'number',
-      }
-    };
-    this.#loops = {};
-    this.is_start = {
-      status: false,
-    };
-    this.ignore = {
-      status: false,
-      deep_ignore: [],
-      ignore_until: false,
-    };
+    this.setup = new computer();
+
+    this.#storage = this.setup.storage();
+    this.#loops = this.setup.loops();
+    this.is_start = this.setup.is_start();
+    this.ignore = this.setup.ignore();
 
     // system
     this.detect_command = detect_command;
     this.catch_error = catch_error;
     this.garbage_collector = garbage_collector;
     this.no_comments = no_comments;
+    this.strict_policy = strict_policy;
 
     // commands
     this.log = log;
@@ -66,6 +58,11 @@ export default class Study_Script {
     code = code.split("\n");
     for (let i = 0; i < code.length; i++) {
       let line = this.no_comments(code[i]);
+      let correct_syntax = this.strict_policy(line);
+
+      if (this.catch_error(correct_syntax, i + 1, line)) {
+        return false;
+      }
 
       if (
         this.ignore.ignore_until != false &&
@@ -85,7 +82,13 @@ export default class Study_Script {
         this.is_start,
         this.ignore
       );
-      if (status === "finish") break;
+      if (status === "finish") {
+        this.#storage = this.setup.storage();
+        this.#loops = this.setup.loops();
+        this.is_start = this.setup.is_start();
+        this.ignore = this.setup.ignore();
+        break;
+      }
       if (typeof status == "number") i = status;
       if (this.catch_error(status, i + 1, line)) {
         return false;
