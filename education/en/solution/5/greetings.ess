@@ -1,0 +1,10 @@
+start
+
+new name string
+set name "Richard"
+
+log string "Hi, I'm " + name + ", nice to meet you!"
+
+delete name
+
+finish
