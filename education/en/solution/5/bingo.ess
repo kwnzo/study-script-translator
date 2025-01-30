@@ -1,0 +1,23 @@
+start
+
+new string b
+new string i
+new string n
+new string g
+new string o
+
+set b "B"
+set i "I"
+set n "N"
+set g "G"
+set o "O"
+
+log string b+"-"+i+"-"+n+"-"+g+"-"+o
+
+delete b
+delete i
+delete n
+delete g
+delete o
+
+finish
