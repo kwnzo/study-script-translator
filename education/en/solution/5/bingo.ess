@@ -12,7 +12,7 @@ set n "N"
 set g "G"
 set o "O"
 
-log string b+"-"+i+"-"+n+"-"+g+"-"+o
+log string b + "-" + i + "-" + n + "-" + g + "-" + o
 
 delete b
 delete i
