@@ -1,0 +1,10 @@
+start
+
+log string "   _____   "
+log string "  / ___ \  "
+log string " / /   \ \ "
+log string "| |    | | "
+log string " \ \___/ / "
+log string "  \_____/  "
+
+finish
