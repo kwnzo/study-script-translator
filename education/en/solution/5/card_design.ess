@@ -1,0 +1,23 @@
+start
+
+new card_number string
+new card_dates string
+new card_holder string
+
+set card_number "0000-0000-0000-0000"
+set card_date "12/99"
+set card_holder "RICHARD SMITH"
+
+log string "||=================================||"
+log string "||         BANK JP.MORGAN          ||"
+log string "||                                 ||"
+log string "||      " + card_number + " | ***  ||"
+log string "|| " + card_date + "                           ||"
+log string "|| " _ card_holder + "                   ||"
+log string "||=================================||"
+
+delete card_number
+delete card_date
+delete card_holder
+
+finish
