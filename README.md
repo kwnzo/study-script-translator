@@ -14,6 +14,7 @@ It is suitable for both elementary school children to learn the basics of progra
 - the language is very easy to learn
 - has a built-in stopwatch for program execution, as well as an indicator of the garbage left in memory
 - self-invention and understanding of fundamental functions and operators
+- web-native language, don't need backend proxy for run code
 
 ### Disadvantages:
 - not intended for the development of real projects
@@ -22,7 +23,7 @@ It is suitable for both elementary school children to learn the basics of progra
 
 ### Features:
 - written in `Node.js `
-- files with code written in `Study Script` have the file extension `.ss`
+- files with code written in `Study Script` have the file extension `.sse`
 
 ## Summary
 
@@ -39,9 +40,9 @@ The planned commercial development of the project and the functional development
 - [x] adding character conversion to character code
 - [x] adding time (in timestamp format)
 - [x] adding a change in the value of a variable
-- [ ] development of full-fledged documentation
+- [x] development of full-fledged documentation
 - [ ] creating examples of simulating fundamental functions and operators
-- [ ] creating a library of basic programming tasks
+- [x] creating a library of basic programming tasks
 - [ ] adding syntax highlighting extension to `VSCode`, `SublimeText`
 - [ ] publishing the compiler for public use
 - [ ] creating an educational platform using `Study Script`
