@@ -23,7 +23,7 @@ It is suitable for both elementary school children to learn the basics of progra
 
 ### Features:
 - written in `Node.js `
-- files with code written in `Study Script` have the file extension `.sse`
+- files with code written in `Study Script` have the file extension `.ess`
 
 ## Summary
 
