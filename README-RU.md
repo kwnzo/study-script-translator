@@ -25,7 +25,7 @@
 
 ## Резюме
 
-- ### [⭐ Документация](https://github.com/SenatorMorra/study-script/blob/main/documentation/ru-doc.md)
+- ### [⭐ Документация](https://github.com/SenatorMorra/study-script/blob/main/documentation/ru/navigation.md)
 
 # Дорожная карта проекта
 
