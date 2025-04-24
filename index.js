@@ -108,3 +108,43 @@ export default class Study_Script {
     return true;
   }
 }
+
+function translate(studyscript) {
+    const js = [];
+    const lines = studyscript.split('\n');
+
+    for (const line of lines) {
+        const trimmed = line.trim();
+
+        // Пропускаем start/delete/finish
+        if (['start', 'delete', 'finish'].includes(trimmed)) continue;
+
+        // Команда new → let
+        if (trimmed.startsWith('new')) {
+            const varName = trimmed.split(' ')[1];
+            js.push(`let ${varName};`);
+        }
+
+        // Команда set → =
+        else if (trimmed.startsWith('set')) {
+            const [, varName, ...value] = trimmed.split(' ');
+            js.push(`${varName} = ${value.join(' ')};`);
+        }
+
+        // Команда log → console.log
+        else if (trimmed.startsWith('log')) {
+            const [, , ...value] = trimmed.split(' ');
+            js.push(`console.log(${value.join(' ')});`);
+        }
+
+        // Если строка не распознана, оставляем как есть (пока)
+        else {
+            js.push(trimmed);
+        }
+    }
+
+    return js.join('\n');
+}
+
+console.log(translate(code));
+
