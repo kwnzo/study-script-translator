@@ -112,39 +112,82 @@ export default class Study_Script {
 function translate(studyscript) {
     const js = [];
     const lines = studyscript.split('\n');
+    let indentLevel = 0;
 
     for (const line of lines) {
         const trimmed = line.trim();
+        if (!trimmed || trimmed.startsWith('#')) continue; // пропуск пустых строк и комментов
 
-        // Пропускаем start/delete/finish
-        if (['start', 'delete', 'finish'].includes(trimmed)) continue;
+        const parts = trimmed.split(' ');
+        const command = parts[0];
+        const indent = '  '.repeat(indentLevel); // отступ
 
-        // Команда new → let
-        if (trimmed.startsWith('new')) {
-            const varName = trimmed.split(' ')[1];
-            js.push(`let ${varName};`);
-        }
+        switch (command) {
+            case 'start':
+            case 'delete':
+            case 'finish':
+                break;
 
-        // Команда set → =
-        else if (trimmed.startsWith('set')) {
-            const [, varName, ...value] = trimmed.split(' ');
-            js.push(`${varName} = ${value.join(' ')};`);
-        }
+            case 'new':
+                if (parts.length >= 3) {
+                    js.push(`${indent}let ${parts[1]};`);
+                }
+                break;
 
-        // Команда log → console.log
-        else if (trimmed.startsWith('log')) {
-            const [, , ...value] = trimmed.split(' ');
-            js.push(`console.log(${value.join(' ')});`);
-        }
+            case 'set':
+                if (parts.length >= 3) {
+                    const value = parts.slice(2).join(' ');
+                    js.push(`${indent}${parts[1]} = ${value};`);
+                }
+                break;
 
-        // Если строка не распознана, оставляем как есть (пока)
-        else {
-            js.push(trimmed);
+            case 'log':
+                if (parts.length >= 3) {
+                    const value = parts.slice(2).join(' ');
+                    js.push(`${indent}console.log(${value});`);
+                }
+                break;
+
+            // if {
+            case 'if':
+                if (parts.length >= 2) {
+                    const condition = parts.slice(1).join(' ');
+                    js.push(`${indent}if (${condition}) {`);
+                    indentLevel++; // Увеличиваем отступ для тела if
+                }
+                break;
+
+            // loop -> while {
+            case 'loop':
+                if (parts.length >= 2) {
+                    const condition = parts.slice(1).join(' ');
+                    js.push(`${indent}while (${condition}) {`);
+                    indentLevel++; // Увеличиваем отступ для тела цикла
+                }
+                break;
+
+            // Закрытие блоков (if/loop) -> }
+            case 'close':
+            case 'end':
+                indentLevel = Math.max(0, indentLevel - 1); // Уменьшаем отступ
+                js.push(`${'  '.repeat(indentLevel)}}`);
+                break;
+
+            // Блок else -> } else {
+            case 'else':
+                indentLevel = Math.max(0, indentLevel - 1);
+                js.push(`${'  '.repeat(indentLevel)}} else {`);
+                indentLevel++;
+                break;
+
+            default:
+                js.push(`${indent}${trimmed}`);
         }
     }
 
     return js.join('\n');
 }
 
-console.log(translate(code));
 
+
+console.log(translate(code));
