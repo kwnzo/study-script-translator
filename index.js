@@ -187,7 +187,108 @@ function translate(studyscript) {
 
     return js.join('\n');
 }
+function reverseTranslate(javascriptCode) {
+    const lines = javascriptCode.split('\n');
+    const output = ['start'];
+    let loopCounter = 0;
+    const variables = new Set();
+
+    // Обработка объявлений переменных
+    function processDeclaration(line) {
+        const varMatch = line.match(/(let|var|const)\s+(\w+)\s*=\s*(.+);?/);
+        if (!varMatch) return false;
+
+        const [, , varName, value] = varMatch;
+        variables.add(varName);
+
+        // Определяем тип
+        let type = 'number';
+        if (value.includes('"') || value.includes("'") || value.includes('new String')) {
+            type = 'string';
+        }
+
+        output.push(`new ${varName} ${type}`);
+        output.push(`set ${varName} ${value.replace(/['"new String\(\)]/g, '').trim()}`);
+        return true;
+    }
+
+    // Обработка циклов
+    function processLoop(line) {
+        const whileMatch = line.match(/while\s*\((.+)\)\s*\{/);
+        if (!whileMatch) return false;
+
+        const condition = whileMatch[1];
+        output.push(`loop loop_${loopCounter} ${condition}`);
+        loopCounter++;
+        return true;
+    }
+
+    // Обработка условий
+    function processIf(line) {
+        const ifMatch = line.match(/if\s*\((.+)\)\s*\{/);
+        if (!ifMatch) return false;
+
+        output.push(`if ${ifMatch[1]}`);
+        return true;
+    }
+
+    // Обработка console.log
+    function processLog(line) {
+        const logMatch = line.match(/console\.log\((.+)\);?/);
+        if (!logMatch) return false;
+
+        const content = logMatch[1];
+        let type = 'number';
+        if (content.includes('"') || content.includes("'")) {
+            type = 'string';
+        }
+
+        output.push(`log ${type} ${content}`);
+        return true;
+    }
+
+    // Основной цикл обработки
+    for (let line of lines) {
+        line = line.trim();
+        if (!line) continue;
+
+        // Пропускаем комментарии
+        if (line.startsWith('//')) {
+            output.push(`# ${line.substring(2).trim()}`);
+            continue;
+        }
+
+        // Обработка конструкций
+        if (processDeclaration(line)) continue;
+        if (processLoop(line)) continue;
+        if (processIf(line)) continue;
+        if (processLog(line)) continue;
+
+        // Обработка закрывающих скобок
+        if (line === '}') {
+            output.push('end');
+            continue;
+        }
+
+        // Обработка присваиваний
+        const assignmentMatch = line.match(/(\w+)\s*=\s*(.+);?/);
+        if (assignmentMatch && variables.has(assignmentMatch[1])) {
+            output.push(`set ${assignmentMatch[1]} ${assignmentMatch[2]}`);
+            continue;
+        }
+
+        // Если не распознано, оставляем как есть
+        output.push(`# ${line}`);
+    }
+
+    // Добавляем delete для всех переменных
+    variables.forEach(varName => {
+        output.push(`delete ${varName}`);
+    });
+
+    output.push('finish');
+    return output.join('\n');
+}
 
 
-
-console.log(translate(code));
+console.log(reverseTranslate(code));
